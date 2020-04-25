@@ -234,7 +234,9 @@ e.g., ob-c++ is not ob-C.el."
                   (ob-ein--process-outputs result-type
 					   (ein:shared-output-get-cell)
 					   processed-params))))
-      (org-babel-remove-result)
+      (condition-case nil
+          (org-babel-remove-result nil t)
+        (wrong-number-of-arguments (org-babel-remove-result)))
       *ob-ein-sentinel*)))
 
 (defun ob-ein--execute-async-callback (buffer params result-type result-params name)
