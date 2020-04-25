@@ -236,7 +236,7 @@ e.g., ob-c++ is not ob-C.el."
 					   processed-params))))
       (condition-case nil
           (org-babel-remove-result nil t)
-        (wrong-number-of-arguments (org-babel-remove-result)))
+        (error (org-babel-remove-result)))
       *ob-ein-sentinel*)))
 
 (defun ob-ein--execute-async-callback (buffer params result-type result-params name)
